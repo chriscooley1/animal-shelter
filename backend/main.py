@@ -2,10 +2,21 @@
 # change this list to be a list[Shelter]. You don't need to write code to convert
 # this list, just manually change it by hand.
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from schemas import Shelter, AnimalCounts
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 shelters: list[Shelter] = [
     Shelter(
@@ -22,6 +33,11 @@ shelters: list[Shelter] = [
         name="Animal Rescue Team",
         address="1838 W 1020 N Ste. B, St. George, UT 84770",
         animals=AnimalCounts(cats=4, dogs=7)
+    ),
+    Shelter(
+        name="Save Me",
+        address="25 Main St, St. George, UT 84770",
+        animals=AnimalCounts(cats=0, dogs=0)
     )
 ]
 
