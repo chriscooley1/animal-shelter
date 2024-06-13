@@ -3,7 +3,7 @@
 # this list, just manually change it by hand.
 from fastapi import FastAPI, HTTPException
 
-from models import Shelter, AnimalCounts
+from schemas import Shelter, AnimalCounts
 
 app = FastAPI()
 
